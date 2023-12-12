@@ -1,0 +1,17 @@
+.session {
+    background-color: azure;
+    margin: auto 500px auto auto;
+    width: 300px
+}
+
+.session-label {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
