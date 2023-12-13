@@ -1,24 +1,24 @@
 import './Session.css'
-import { AiOutlineArrowDown, AiOutlineArrowUp  } from "react-icons/ai";
+import { AiOutlineCaretUp, AiOutlineCaretDown } from "react-icons/ai";
 
 interface session {
-    data: number,
+    data: string,
     click: (content: string) => void
 }
 
 const Session: React.FC<session> = ({ data, click }) => {
     return (
         <div className='session'>
-          <h2 id='session-label' className='session-label'>Session Length</h2>
-
+            <h2 id='session-label' className='session-label'>Session Length</h2>
+            
             <div className='grid-container'>
-                <button id='session-decrement' onClick={() => click('decrement')}>
-                    <AiOutlineArrowDown />
-                </button>
+                <a id='session-decrement' onClick={() => click('decrement')} title='decrease'>
+                    <AiOutlineCaretDown />
+                </a>
                 <label id='session-length'>{data}</label>
-                <button id='session-increment' onClick={() => click('increment')}>
-                    <AiOutlineArrowUp />
-                </button>
+                <a id='session-increment' onClick={() => click('increment')} title='increase'>
+                    <AiOutlineCaretUp />
+                </a>
             </div>
         </div>
     )

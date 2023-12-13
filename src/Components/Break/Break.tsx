@@ -1,8 +1,8 @@
 import './Break.css'
-import { AiOutlineArrowDown, AiOutlineArrowUp  } from "react-icons/ai";
+import { AiOutlineCaretUp, AiOutlineCaretDown } from "react-icons/ai";
 
 interface forBreak {
-    handle: number,
+    handle: string,
     click: (content: string) => void
 }
 
@@ -12,13 +12,13 @@ const Break: React.FC<forBreak> = ({ handle, click }) => {
           <h2 id='break-label' className='break-label'>Break Length</h2>
 
           <div className='grid-container'>
-            <button id='break-decrement' onClick={() => click('decrement')}>
-                <AiOutlineArrowDown />
-            </button>
-            <label id='break-length'>{handle}</label>
-            <button id='break-increment' onClick={() => click('increment')}>
-                <AiOutlineArrowUp />
-            </button>
+            <a id='break-decrement' onClick={() => click('decrement')} title='decrease'>
+                <AiOutlineCaretDown />
+            </a>
+            <label id="break-length">{handle}</label>
+            <a id='break-increment' onClick={() => click('increment')} title='increase'>
+                <AiOutlineCaretUp />
+            </a>
           </div>
         </div>
     )
