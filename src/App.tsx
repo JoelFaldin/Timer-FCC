@@ -9,6 +9,7 @@ function App() {
   const [breakTime, setBreakTime] = useState<string>('5')
   const [sessionTime, setSessionTime] = useState<string>('25')
 
+  // -----------------------------------------------------------------------------------------------------------------------------
   const handleBreak = (event: string) => {
     const data = event
 
@@ -27,8 +28,8 @@ function App() {
     }
     // Updating sessionTime based on data:
     data === 'decrement' ? setSessionTime(prev => (Number(prev) - 1).toString()) : setSessionTime(prev => (Number(prev) + 1).toString())
-
   }
+  // ------------------------------------------------------------------------------------------------------------------------------
 
   const reset = () => {
     setBreakTime('5')
