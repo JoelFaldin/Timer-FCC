@@ -30,11 +30,11 @@ function App() {
     
     if (!state) return;
     if (state) {
-      interval = window.setInterval(countdown, 1000)
+      interval = setInterval(countdown, 1000)
     }
-    
+
     return () => {
-      window.clearInterval(interval)
+      clearInterval(interval)
     }
   }, [state])
 
@@ -98,7 +98,7 @@ function App() {
         <Session data={sessionTime} click={handleSession} />
       </section>
       <section className='timer-section'>
-        <Timer reset={reset} time={time} click={handleClick} />
+        <Timer reset={reset} time={time} click={handleClick} state={state} />
       </section>
     </div>
   )

@@ -1,13 +1,16 @@
 import './Timer.css'
-import { AiOutlineCaretRight , AiOutlineRedo  } from 'react-icons/ai'
+import { AiOutlineCaretRight , AiOutlineRedo, AiOutlinePause } from 'react-icons/ai'
+
+
 
 interface timer {
     reset: () => void,
     time: string,
-    click: () => void
+    click: () => void,
+    state: boolean
 }
 
-const Timer: React.FC<timer> = ({ reset, time, click }) => {
+const Timer: React.FC<timer> = ({ reset, time, click, state }) => {
     return (
         <div className='timer'>
             <h2 id='timer-label' className='timer-title'>Current Session</h2>
@@ -15,7 +18,7 @@ const Timer: React.FC<timer> = ({ reset, time, click }) => {
 
             <div className='grid-new-container'>
                 <a id='start_stop' title='start' onClick={click}>
-                    <AiOutlineCaretRight />
+                    { state ? <AiOutlinePause /> : <AiOutlineCaretRight /> }
                 </a>
                 <a id='reset' onClick={reset} title='reset'>
                     <AiOutlineRedo />
