@@ -8,19 +8,39 @@ function App() {
   const [breakTime, setBreakTime] = useState<string>('5')
   const [sessionTime, setSessionTime] = useState<string>('25')
   const [time, setTime] = useState<string>('00:00')
-  const [active, setActive] = useState<boolean>(false)
+  const [state, setState] = useState<boolean>(false)
 
+  // Separating 'time' to seconds:
+  const [minutes, seconds] = time.split(':').map(Number)
+  let totalSeconds = minutes * 60 + seconds
+
+  // Formatting to mm:ss:
   useEffect(() => {
     const number = Number(sessionTime)
     const date = new Date(number * 60000)
-    // Minutes and seconds:
     const minutes = date.getMinutes()
     const seconds = date.getSeconds()
 
-    // Format the time:
     const formated = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
     setTime(formated)
   }, [sessionTime])
+
+  useEffect(() => {
+    let interval: number
+    
+    if (!state) return;
+    if (state) {
+      interval = window.setInterval(countdown, 1000)
+    }
+    
+    return () => {
+      window.clearInterval(interval)
+    }
+  }, [state])
+
+  const handleClick = () => {
+    setState(prev => prev === true ? false : true)
+  }
 
   const handleBreak = (event: string) => {
     const data = event
@@ -46,33 +66,15 @@ function App() {
     data === 'decrement' ? setSessionTime(prev => (Number(prev) - 1).toString()) : setSessionTime(prev => (Number(prev) + 1).toString())
   }
 
-  const handleClick = () => {
-    // Separating 'time' to seconds:
-    const [minutes, seconds] = time.split(':').map(Number)
-    let totalSeconds = minutes * 60 + seconds
-
-    const countdownFunction = () => {
-      if (totalSeconds > 0) {
-        totalSeconds--
-        formatFromSeconds(totalSeconds)
-      } else {
-        // clearInterval(countdown)
-        console.log('it finished!')
-      }
-    }
-
-    // let countdown = setInterval(countdownFunction(), 1000)
-
-
-    if (active === false) {
-      console.log('it shall start now');
-      // countdown = countdownFunction()
-      setActive(true)
-    } else if (active === true) {
-      console.log('it shall stop now');
-      setActive(false)
-    }
-
+  const countdown = () => {
+      if (state === true) {
+          if (totalSeconds > 0) {
+            totalSeconds--
+            formatFromSeconds(totalSeconds)
+          } else {
+            setTime('00:00')
+          }
+        }
   }
 
   const formatFromSeconds = (seconds: number) => {
