@@ -1,12 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500&family=Orbitron&family=Righteous&family=Silkscreen&display=swap');
+
 .timer {
-    background-color: azure;
+    background-color: rgb(169, 210, 210);
     margin: auto;
     width: 300px;
+    border-radius: 10px 10px 20px 20px;
 }
 
 .timer-title {
     text-align: center;
     margin-top: 10px;
+    font-family: 'Righteous', sans-serif;
+    font-weight: 100;
 }
 
 .timer-label {
@@ -14,6 +19,8 @@
     text-align: center;
     margin: 0 0 10px 0;
     font-size: 30px;
+    font-family: 'Righteous', sans-serif;
+    font-weight: 100;
 }
 
 .grid-new-container {

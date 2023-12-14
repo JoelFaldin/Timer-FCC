@@ -11,12 +11,12 @@ const Break: React.FC<forBreak> = ({ handle, click }) => {
         <div className='break'>
           <h2 id='break-label' className='break-label'>Break Length</h2>
 
-          <div className='grid-container'>
-            <a id='break-decrement' onClick={() => click('decrement')} title='decrease'>
+          <div className='grid-container-break'>
+            <a id='break-decrement' onClick={() => click('decrement')}>
                 <AiOutlineCaretDown />
             </a>
             <label id="break-length">{handle}</label>
-            <a id='break-increment' onClick={() => click('increment')} title='increase'>
+            <a id='break-increment' onClick={() => click('increment')}>
                 <AiOutlineCaretUp />
             </a>
           </div>

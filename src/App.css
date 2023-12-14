@@ -1,28 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500&family=Orbitron&family=Silkscreen&display=swap');
 
 body {
-    background-color: #001a67;
+    background-color: #26357d;
 }
 
 .title {
-    font-family: 'Silkscreen', sans-serif;
-    color: #d8e0ff;
+    font-family: 'Orbitron', sans-serif;
+    color: #e2e4f6;
     font-size: 40px;
     text-align: center;
     margin: 60px 0 30px 0;
 }
 
 .mini-text {
-    font-family: 'Silkscreen', sans-serif;
-    color: #d8e0ff;
-    font-size: 20px;
+    font-family: 'Orbitron', sans-serif;
+    color: #e2e4f6;
+    font-size: 15px;
     text-align: center;
     margin: 0 0 60px 0;
 }
 
 .config-section {
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
+    justify-content: space-around;
     margin-bottom: 60px;
 }
 
@@ -30,4 +30,14 @@ body {
     display: grid;
     place-items: center;
     margin: 30px 0 0 0;
+}
+
+.vite {
+    font-style: normal;
+    color:rgb(179, 0, 255);
+}
+
+.react {
+    font-style: normal;
+    color: rgb(0, 128, 255);
 }

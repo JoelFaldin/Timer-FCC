@@ -73,6 +73,7 @@ function App() {
             formatFromSeconds(totalSeconds)
           } else {
             setTime('00:00')
+            console.log('this happends when it finishes')
           }
         }
   }
@@ -91,7 +92,7 @@ function App() {
   return (
     <div>
       <h1 className='title'>FCC 25+5 Clock</h1>
-      <p className='mini-text'>Built with Vite + React</p>
+      <p className='mini-text'>Built with <i className='vite'>Vite</i> + <i className='react'>React</i></p>
 
       <section className='config-section'>
         <Break handle={breakTime} click={handleBreak} />

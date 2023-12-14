@@ -17,14 +17,13 @@ const Timer: React.FC<timer> = ({ reset, time, click, state }) => {
             <label id='time-left' className='timer-label'>{time}</label> {/* Format this label */}
 
             <div className='grid-new-container'>
-                <a id='start_stop' title='start' onClick={click}>
+                <a id='start_stop' title='Start timer' onClick={click}>
                     { state ? <AiOutlinePause /> : <AiOutlineCaretRight /> }
                 </a>
-                <a id='reset' onClick={reset} title='reset'>
+                <a id='reset' onClick={reset} title='Reset timer'>
                     <AiOutlineRedo />
                 </a>                
             </div>
-
         </div>
     )
 }

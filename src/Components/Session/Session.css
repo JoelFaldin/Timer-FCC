@@ -1,19 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500&family=Orbitron&family=Righteous&family=Silkscreen&display=swap');
+
 .session {
-    background-color: azure;
-    margin: auto 500px auto auto;
-    width: 300px
+    background-color: #b9bce4;
+    width: 300px;
+    user-select: none;
+    border-radius: 20px 5px;
+    margin-right: 350px;
 }
 
 .session-label {
     text-align: center;
     margin-top: 10px;
+    user-select: text;
+    font-family: 'Righteous', sans-serif;
+    font-weight: 100;
 }
 
-.grid-container {
+.grid-container-session {
     display: grid;
     grid-template-columns: auto auto auto;
     text-align: center;
     margin-bottom: 10px;
+    justify-content: space-evenly;
 }
 
 #session-decrement, #session-increment {
@@ -23,4 +31,6 @@
 
 #session-length {
     font-size: 30px;
+    user-select: text;
+    font-family: 'Righteous', sans-serif;
 }
