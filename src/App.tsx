@@ -19,9 +19,17 @@ function App() {
   // Formatting to mm:ss:
   useEffect(() => {
     const number = Number(sessionTime)
-    const date = new Date(number * 60000)
-    const minutes = date.getMinutes()
-    const seconds = date.getSeconds()
+    let minutes: number
+    let seconds: number
+
+    if (number === 60) {
+      minutes = 60
+      seconds = 0
+    } else {
+      const date = new Date(number * 60000)
+      minutes = date.getMinutes()
+      seconds = date.getSeconds()
+    }
 
     const formated = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
     setTime(formated)
@@ -77,8 +85,7 @@ function App() {
             setCurrent(prev => prev === 'session' ? 'break' : 'session')
             totalSeconds = current === 'session' ? Number(breakTime) * 60 : Number(sessionTime) * 60
             formatFromSeconds(totalSeconds)
-            console.log('this happens when it finishes')
-            
+
             const audio = document.getElementById('beep') as HTMLAudioElement
             audio.play()
           }
