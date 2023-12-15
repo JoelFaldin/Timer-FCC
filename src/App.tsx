@@ -3,12 +3,14 @@ import './App.css'
 import Break from './Components/Break/Break'
 import Session from './Components/Session/Session'
 import Timer from './Components/Timer/Timer'
+import audio from './assets/alarm.mp3'
 
 function App() {
   const [breakTime, setBreakTime] = useState<string>('5')
   const [sessionTime, setSessionTime] = useState<string>('25')
   const [time, setTime] = useState<string>('00:00')
   const [state, setState] = useState<boolean>(false)
+  const [current, setCurrent] = useState<string>('session')
 
   // Separating 'time' to seconds:
   const [minutes, seconds] = time.split(':').map(Number)
@@ -30,11 +32,11 @@ function App() {
     
     if (!state) return;
     if (state) {
-      interval = setInterval(countdown, 1000)
+      interval = window.setInterval(countdown, 1000)
     }
 
     return () => {
-      clearInterval(interval)
+      window.clearInterval(interval)
     }
   }, [state])
 
@@ -72,21 +74,35 @@ function App() {
             totalSeconds--
             formatFromSeconds(totalSeconds)
           } else {
-            setTime('00:00')
-            console.log('this happends when it finishes')
+            setCurrent(prev => prev === 'session' ? 'break' : 'session')
+            totalSeconds = current === 'session' ? Number(breakTime) * 60 : Number(sessionTime) * 60
+            formatFromSeconds(totalSeconds)
+            console.log('this happens when it finishes')
+            
+            const audio = document.getElementById('beep') as HTMLAudioElement
+            audio.play()
           }
         }
   }
 
   const formatFromSeconds = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60)
-    const newSeconds = seconds % 60
-    setTime(`${minutes}:${newSeconds}`)
+    let minutes = Math.floor(seconds / 60)
+    const finalMinutes = minutes < 10 ? '0' + minutes.toString() : minutes
+    let newSeconds = seconds % 60
+    const finalSeconds = newSeconds < 10 ? '0' + newSeconds.toString() : newSeconds
+    
+    setTime(`${finalMinutes}:${finalSeconds}`)
   }
 
   const reset = () => {
+    setState(false)
     setBreakTime('5')
     setSessionTime('25')
+    setTime('25:00')
+    setCurrent('session')
+    const audio = document.getElementById('beep') as HTMLAudioElement
+    audio.pause()
+    audio.currentTime = 0
   }
 
   return (
@@ -99,7 +115,8 @@ function App() {
         <Session data={sessionTime} click={handleSession} />
       </section>
       <section className='timer-section'>
-        <Timer reset={reset} time={time} click={handleClick} state={state} />
+        <Timer reset={reset} time={time} click={handleClick} state={state} current={current} />
+        <audio id='beep' src={audio}></audio>
       </section>
     </div>
   )
